@@ -1,33 +1,36 @@
 module Where
   class IpAddress < Where::Base
-    class << self
-      GEOCODER_URL = 'http://www.geoplugin.net/json.gp?ip='
-      
-      def geocode(address, api_url=nil)
-        super(address, api_url || GEOCODER_URL)
-      end
+    GEOCODER_URL = 'http://www.geoplugin.net/json.gp?ip='
+
+    def self.geocode(address, api_url=nil)
+      super(address, api_url || GEOCODER_URL)
     end
-    
-    def initialize(body="")
-      data = body[10..-2] || ""
-      super(data.empty? ? data : data.gsub('geoplugin_', ''))
+
+    def initialize(data='')
+      super(data.to_s.gsub('geoplugin_', ''))
     end
-            
+
     def latitude=(val)
       @lat = val
     end
-    
+
     def longitude=(val)
       @lng = val
     end
-  
+
     def accuracy
-      return 'street_address' unless street.nil?
-      return 'city' unless city.nil?
-      return 'region' unless region.nil?
-      return 'country' unless country.nil?
-      ""
+      if street
+        'street_address'
+      elsif city
+        'city'
+      elsif region
+        'region'
+      elsif country
+        'country'
+      else
+        ''
+      end
     end
-    
+
   end
 end

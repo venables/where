@@ -61,7 +61,7 @@ describe Where do
         result.street_number.should == '4'
         result.street.should == 'Yawkey Way'
         result.city.should == 'Boston'
-        result.city(true).should == 'Boston'
+        result.city(true).should == 'Fenway/Kenmore'
         result.region.should == 'Massachusetts'
         result.region(true).should == 'MA'
         result.postal_code.should == '02215'
@@ -74,13 +74,13 @@ describe Where do
 
     context 'given a neighborhood physical address' do
       it 'returns a valid geolocation object' do
-        result = Where.is("brighton ma")
+        result = Where.is("North End Boston MA")
         result.accuracy.should == 'neighborhood'
         result.address.should_not be_nil
         result.street_number.should be_nil
         result.street.should be_nil
         result.city.should == 'Boston'
-        result.city(true).should == 'Brighton'
+        result.city(true).should == 'North End'
         result.region.should == 'Massachusetts'
         result.region(true).should == 'MA'
         result.postal_code.should be_nil
