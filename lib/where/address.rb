@@ -2,8 +2,8 @@ module Where
   class Address < Where::Base
     GEOCODER_URL = 'http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address='
 
-    def self.geocode(address, api_url=nil)
-      super(address, api_url || GEOCODER_URL)
+    def self.geocode(address, opts={})
+      super(address, GEOCODER_URL)
     end
 
     def results=(results_array=[])

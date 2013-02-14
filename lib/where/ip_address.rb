@@ -1,9 +1,11 @@
 module Where
   class IpAddress < Where::Base
-    GEOCODER_URL = 'http://www.geoplugin.net/json.gp?ip='
+    GEOPLUGIN_URL = 'http://www.geoplugin.net/json.gp?ip='
+    FREEGEOIP_URL = 'http://freegeoip.net/json/'
 
-    def self.geocode(address, api_url=nil)
-      super(address, api_url || GEOCODER_URL)
+    def self.geocode(address, opts={})
+      api_url = opts[:geocoder] == 'geoplugin' ? FREEGEOIP_URL : GEOPLUGIN_URL
+      super(address, api_url)
     end
 
     def initialize(data='')

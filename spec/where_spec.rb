@@ -35,21 +35,42 @@ describe Where do
     end
 
     context 'given an IP address' do
-      it 'returns a valid geolocation object' do
-        result = Where.is("173.194.33.104")
-        result.accuracy.should == 'city'
-        result.address.should_not be_nil
-        result.street_number.should be_nil
-        result.street.should be_nil
-        result.city.should == 'Mountain View'
-        result.city(true).should == 'Mountain View'
-        result.region.should == 'California'
-        result.region(true).should == 'CA'
-        result.postal_code.should be_nil
-        result.country.should == 'United States'
-        result.country(true).should == 'US'
-        result.lat.should_not be_nil
-        result.lng.should_not be_nil
+      context 'using the default geocoder (freegeoip.net)' do
+        it 'returns a valid geolocation object' do
+          result = Where.is("173.194.33.104")
+          result.accuracy.should == 'city'
+          result.address.should_not be_nil
+          result.street_number.should be_nil
+          result.street.should be_nil
+          result.city.should == 'Mountain View'
+          result.city(true).should == 'Mountain View'
+          result.region.should == 'California'
+          result.region(true).should == 'CA'
+          result.postal_code.should be_nil
+          result.country.should == 'United States'
+          result.country(true).should == 'US'
+          result.lat.should_not be_nil
+          result.lng.should_not be_nil
+        end
+      end
+
+      context 'using geoplugin.net as the geocoder' do
+        it 'returns a valid geolocation object' do
+          result = Where.is("173.194.33.104", geocoder: 'geoplugin')
+          result.accuracy.should == 'city'
+          result.address.should_not be_nil
+          result.street_number.should be_nil
+          result.street.should be_nil
+          result.city.should == 'Mountain View'
+          result.city(true).should == 'Mountain View'
+          result.region.should == 'California'
+          result.region(true).should == 'CA'
+          result.postal_code.should be_nil
+          result.country.should == 'United States'
+          result.country(true).should == 'US'
+          result.lat.should_not be_nil
+          result.lng.should_not be_nil
+        end
       end
     end
 
