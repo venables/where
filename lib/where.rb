@@ -1,3 +1,4 @@
+require "where/version"
 require 'where/base'
 require 'where/address'
 require 'where/ip_address'
