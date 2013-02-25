@@ -4,7 +4,7 @@ module Where
     FREEGEOIP_URL = 'http://freegeoip.net/json/'
 
     def self.geocode(address, opts={})
-      api_url = opts[:geocoder] == 'geoplugin' ? FREEGEOIP_URL : GEOPLUGIN_URL
+      api_url = opts[:geocoder] == 'geoplugin' ? GEOPLUGIN_URL : FREEGEOIP_URL
       super(address, api_url)
     end
 

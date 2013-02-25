@@ -41,6 +41,12 @@ Or, by IP-Address:
     result = Where.is "173.194.33.104"
     ...
 
+Testing
+-------
+
+Run the spec suite by running:
+
+    rspec
 
 Copyright
 ---------

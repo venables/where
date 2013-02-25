@@ -82,7 +82,7 @@ describe Where do
         result.street_number.should == '4'
         result.street.should == 'Yawkey Way'
         result.city.should == 'Boston'
-        result.city(true).should == 'Fenway/Kenmore'
+        result.city(true).should == 'West Fens'
         result.region.should == 'Massachusetts'
         result.region(true).should == 'MA'
         result.postal_code.should == '02215'
